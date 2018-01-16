@@ -4,6 +4,7 @@ class Game < ApplicationRecord
   has_many :clues
   has_many :game_players
   has_many :players, through: :game_players, source: :user
+  has_many :messages
   belongs_to :creator, class_name: 'User'
 
   enum status: [:waiting, :in_progress, :complete]
