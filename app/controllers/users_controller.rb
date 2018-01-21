@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
 
-    byebug
     if user.save
       render json: {
         id: user.id,
