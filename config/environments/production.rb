@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.web_socket_server_url = "wss://hidden-phrases-backend.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = ['https://arcane-dusk-95565.herokuapp.com/','http://arcane-dusk-95565.herokuapp.com/' ]
+  config.web_socket_server_url = "wss://hidden-names-backend.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['http://localhost:3000','https://localhost:3000' ]
 
   # Code is not reloaded between requests.
   config.cache_classes = true

@@ -4,6 +4,10 @@ class GamePlayersController < ApplicationController
     game_player = GamePlayer.new(game_player_params.merge({user_id: current_user.id}))
 
     if game_player.save
+      ActionCable.server.broadcast('lobby_channel', {
+        type: 'PLAYER_JOIN',
+        payload: GameSerializer.new(game_player.game).small_serialize
+      })
       GamesChannel.broadcast_to(game_player.game, {
         type: 'NEW_PLAYER',
         payload: GamePlayersSerializer.new(game_player).serialize

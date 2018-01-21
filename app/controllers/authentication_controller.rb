@@ -6,10 +6,10 @@ class AuthenticationController < ApplicationController
       render json: {
         id: user.id,
         username: user.username,
-        jwt: JWT.encode({user_id: user.id}, ENV['secret_key'], 'HS256')
+        token: JWT.encode({user_id: user.id}, ENV['secret_key'], 'HS256')
       }
     else
-      render json: {error: 'User not found'}, status: 404
+      render json: {error: 'User not found'}, status: 401
     end
   end
 
@@ -20,7 +20,7 @@ class AuthenticationController < ApplicationController
         username: current_user.username
       }
     else
-      render json: {error: 'No id present on headers'}, status: 404
+      render json: {error: 'No id present on headers'}, status: 401
     end
   end
 

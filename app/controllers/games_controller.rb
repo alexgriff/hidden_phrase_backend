@@ -5,12 +5,17 @@ class GamesController < ApplicationController
   end
 
   def index
-    render json: Game.where.not(status: :complete)
+    render json: Game.where.not(status: :complete).map { |game| GameSerializer.new(game).small_serialize }
   end
 
   def create
     game = Game.create(creator_id: current_user.id, status: :waiting)
     GameInitializer.new(game)
-    redirect_to games_path
+    ActionCable.server.broadcast('lobby_channel', {
+      type: 'NEW_GAME',
+      payload: GameSerializer.new(game).small_serialize
+    })
+
+    render json: GameSerializer.new(game).small_serialize
   end
 end

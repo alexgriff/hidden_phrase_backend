@@ -5,6 +5,16 @@ class GameSerializer
     @object = object
   end
 
+  def small_serialize
+    {
+      id: object.id,
+      status: object.status,
+      name: object.game_cards.order(:index).first(2).map { |gc| gc.card.word }.join(' '),
+      players: object.players.pluck(:username),
+      creator: object.creator
+    }
+  end
+
 
   def serialize
     {
