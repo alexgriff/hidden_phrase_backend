@@ -10,6 +10,7 @@ class GameInitializer
 
   def init_identities
     first_team = [:red_spy, :blue_spy].sample
+    game.update(turn: first_team.to_s.split('_').first)
     positions = (0...GAME_SIZE).to_a
     identities = {}
 

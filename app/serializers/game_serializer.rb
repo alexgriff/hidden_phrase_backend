@@ -8,6 +8,7 @@ class GameSerializer
   def small_serialize
     {
       id: object.id,
+      turn: object.turn,
       status: object.status,
       name: object.game_cards.order(:index).first(2).map { |gc| gc.card.word }.join(' '),
       players: object.players.pluck(:username),

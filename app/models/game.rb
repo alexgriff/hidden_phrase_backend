@@ -8,6 +8,7 @@ class Game < ApplicationRecord
   belongs_to :creator, class_name: 'User'
 
   enum status: [:waiting, :in_progress, :complete]
+  enum turn: [:blue, :red]
 
   def current_clue
     self.clues.order(updated_at: :desc).first
