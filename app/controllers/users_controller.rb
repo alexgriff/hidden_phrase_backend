@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         token: JWT.encode({user_id: user.id}, ENV['secret_key'], 'HS256')
       }
     else
-      render json: {errors: user.errors}, status: 422
+      render json: {error: user.errors, user_errors: user.errors}, status: 422
     end
   end
 
