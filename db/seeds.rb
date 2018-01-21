@@ -431,7 +431,6 @@ words = [
   'Pen',
   'Pencil',
   'Pendulum',
-  'Penis',
   'Penny',
   'Pepper',
   'Personal',
