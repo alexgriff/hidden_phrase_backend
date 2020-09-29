@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   end
 
   def index
-    render json: Game.where.not(status: :complete).map { |game| GameSerializer.new(game).small_serialize }
+    render json: Game.where.not(status: :complete).order(created_at: :desc).map { |game| GameSerializer.new(game).small_serialize }
   end
 
   def create
